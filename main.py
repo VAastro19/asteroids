@@ -1,17 +1,28 @@
+# Import necessary libraries and modules
 import pygame
 from constants import *
 
 def main():
-    pygame.init()
-    screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+    pygame.init()   # Initialize pygame modules
+    screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT)) # Creates screen object
+    clock = pygame.time.Clock() # Create a Clock object to manipulate FPS in game
+    dt = 0  # Initial delta time set to zero
 
-    while True:
-        for event in pygame.event.get():
+    while True: # Game loop
+        for event in pygame.event.get():    # Event loop. Checks for events (like player inputs) to modify the game world
             if event.type == pygame.QUIT:
-                return
+                return  # Exits main()
 
-        screen.fill("black")
-        pygame.display.flip()
+        screen.fill("black")    # Calling screen's method "fill" to set the black screen on the game window
+        pygame.display.flip()   # Flips the back buffer (in memory) with a finished game scene to the front buffer where the player can see changes
+        dt = clock.tick(60) / 1000  # Limits FPS to 60 and saves delta time from a previous scene into a variable
 
 if __name__ == "__main__":
     main()
+
+# pygame is a library which has modules (e.g. display or event). If you want to call a function specific to the module, we first
+# call the library, then the module in question, and at last the function, for example pygame.display.flip(). screen is an object created
+# by me, so it's functions are called like methods from a class, instead of using logic from above. 
+# Regarding flip(): firstly, a buffer is a region in memory where pixel data is stored. pygame uses two buffers: back and front. Back buffer is
+# hidden from a player, game screen is updated there with each line of code. Then, at the end of the game loop, we use flip() to flip that back
+# buffer onto the front buffer where player can see changees. It is a useful mechanism, because we show the player the scene, once it's ready.
