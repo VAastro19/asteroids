@@ -1,19 +1,23 @@
 # Import necessary libraries and modules
 import pygame
 from constants import *
+from player import Player
 
 def main():
     pygame.init()   # Initialize pygame modules
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT)) # Creates screen object
     clock = pygame.time.Clock() # Create a Clock object to manipulate FPS in game
     dt = 0  # Initial delta time set to zero
+    
+    player = Player(SCREEN_WIDTH/2, SCREEN_HEIGHT/2)    # Instansiate the player
 
     while True: # Game loop
         for event in pygame.event.get():    # Event loop. Checks for events (like player inputs) to modify the game world
             if event.type == pygame.QUIT:
                 return  # Exits main()
 
-        screen.fill("black")    # Calling screen's method "fill" to set the black screen on the game window
+        screen.fill("black")  # Calling screen's method "fill" to set the black screen on the game window
+        player.draw(screen) # Draw player on the screen
         pygame.display.flip()   # Flips the back buffer (in memory) with a finished game scene to the front buffer where the player can see changes
         dt = clock.tick(60) / 1000  # Limits FPS to 60 and saves delta time from a previous scene into a variable
 
