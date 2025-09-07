@@ -1,5 +1,6 @@
 # Import necessary libraries and modules
 import pygame
+import sys
 from constants import *
 from player import Player
 from asteroid import Asteroid
@@ -30,6 +31,9 @@ def main():
         updateable.update(dt)
         for item in drawable:
             item.draw(screen)
+        for item in asteroids:
+            if item.check_collisions(player):
+                sys.exit("Game over!")
         pygame.display.flip()   # Flips the back buffer (in memory) with a finished game scene to the front buffer where the player can see changes
         dt = clock.tick(60) / 1000  # Limits FPS to 60 and saves delta time from a previous scene into a variable
 
