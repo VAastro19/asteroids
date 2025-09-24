@@ -38,6 +38,10 @@ def main():
         for item in asteroids:
             if item.check_collisions(player):
                 sys.exit("Game over!")
+        for item in asteroids:
+            for bullet in shots:
+                if item.check_collisions(bullet):
+                    item.split()
         pygame.display.flip()   # Flips the back buffer (in memory) with a finished game scene to the front buffer where the player can see changes
         dt = clock.tick(60) / 1000  # Limits FPS to 60 and saves delta time from a previous scene into a variable
 
