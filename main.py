@@ -9,6 +9,11 @@ from shot import Shot
 
 def main():
     pygame.init()   # Initialize pygame modules
+
+    print("Starting Asteroids!")
+    print(f"Screen width: {SCREEN_WIDTH}")
+    print(f"Screen height: {SCREEN_HEIGHT}")
+
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT)) # Creates screen object
     clock = pygame.time.Clock() # Create a Clock object to manipulate FPS in game
     dt = 0  # Initial delta time set to zero
